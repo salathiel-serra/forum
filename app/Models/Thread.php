@@ -8,6 +8,11 @@ class Thread extends Model
 {
     protected $fillable = ["title", "body"];
     
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
     public function replies()
     {
         return $this->hasMany(Reply::class);

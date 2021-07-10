@@ -19,7 +19,7 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        $threads = $this->thread->paginate(15);
+        $threads = $this->thread->orderBy('created_at', 'DESC')->paginate(5);
         return view('threads.index', compact('threads'));
     }
 
@@ -52,25 +52,24 @@ class ThreadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $thread
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($thread)
     {
-        // $thread = $this->thread->find($id);
-        // return view('threads.show', compact('thread'));
-        return redirect()->route('thread.edit', $id);
+        $thread = $this->thread->whereSlug($thread)->first();
+        return view('threads.show', compact('thread'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $thread
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($thread)
     {
-        $thread = $this->thread->find($id);
+        $thread = $this->thread->whereSlug($thread)->first();
         return view('threads.edit', compact('thread'));
     }
 
