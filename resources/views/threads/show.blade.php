@@ -14,11 +14,13 @@
           {{ $thread->body }}
         </div>
         <div class="card-footer">
-          <a href="{{route('threads.edit', $thread->slug)}}" class="btn btn-sm btn-primary"> Editar </a>
-          <form action="{{route('threads.destroy', $thread->slug)}}" method="post">
+        <a href="{{route('threads.edit', $thread->slug)}}" class="btn btn-sm btn-primary"> Editar </a>
+          <a href="#" class="btn btn-sm btn-danger"
+            onclick="event.preventDefault(); document.querySelector('form.thread-rm').submit();" > Remover </a>
+
+          <form action="{{route('threads.destroy', $thread->slug)}}" class="thread-rm" method="post">
             @csrf 
             @method('DELETE')
-            <button type="submit" class="btn btn-sm btn-danger"> Remover</button>
           </form>
         </div>
       </div>
@@ -26,3 +28,9 @@
     </div>
   </div>
 @endsection
+
+<style>
+  .thread-rm {
+    display:none;
+  }
+</style>
