@@ -16,10 +16,14 @@ class ReplyController extends Controller
             $thread = Thread::find($request->thread_id);
             $thread->replies()->create($reply);
 
+            flash('Resposta criada com successo!')->success();
             return redirect()->back();
 
         } catch (\Exception $te) {
-           return redirect()->back();
+            $message = env('APP_ENV') ? $e->getMessage() : "Erro ao publicar resposta!";
+            
+            flash($message)->warning();
+            return redirect()->back();
         }
     }
 }
