@@ -52,7 +52,7 @@
           <label> Responder: </label>
           <textarea name="reply" id="" cols="30" rows="3" class="form-control"></textarea>
         </div>
-        <button type="submit">Responder</button>
+        <button type="submit" class="btn btn-sm btn-success">Responder</button>
       </form>
     </div>
   </div>
