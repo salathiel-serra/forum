@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -74,6 +74,7 @@
 
         <main class="py-4">
             <div class="container">
+                @include('flash::message')
                 @yield('content')
             </div>
         </main>
