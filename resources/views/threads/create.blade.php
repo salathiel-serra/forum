@@ -11,6 +11,15 @@
         @csrf
 
         <div class="form-group">
+          <label> Selecione um canal para o tópico </label>
+          <select name="channel_id" id="" class="form-control">
+            @foreach($channels as $channel)
+              <option value="{{$channel->id}}">{{$channel->name}}</option>
+            @endforeach
+          </select>
+        </div>
+
+        <div class="form-group">
           <label for="body_text"> Tópico: </label>
           <input name="title" type="text" class="form-control" value="">
         </div>
