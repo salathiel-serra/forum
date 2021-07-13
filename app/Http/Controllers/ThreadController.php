@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Models\{
     Thread, User, Channel
 };
+use App\Http\Requests\ThreadRequest;
 
 class ThreadController extends Controller
 {
@@ -46,10 +47,10 @@ class ThreadController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\ThreadRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ThreadRequest $request)
     {
         try {
             $thread         = $request->all();
@@ -97,11 +98,11 @@ class ThreadController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\ThreadRequest  $request
      * @param  string $thread
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $thread)
+    public function update(ThreadRequest $request, $thread)
     {
         try {
             $thread = $this->thread->whereSlug($thread)->first();

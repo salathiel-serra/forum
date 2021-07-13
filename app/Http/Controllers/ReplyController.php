@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Thread;
+use App\Http\Requests\ReplyRequest;
 
 class ReplyController extends Controller
 {
-    public function store(Request $request)
+    public function store(ReplyRequest $request)
     {
         try {
             $reply = $request->all();
@@ -19,7 +20,7 @@ class ReplyController extends Controller
             flash('Resposta criada com successo!')->success();
             return redirect()->back();
 
-        } catch (\Exception $te) {
+        } catch (\Exception $e) {
             $message = env('APP_ENV') ? $e->getMessage() : "Erro ao publicar resposta!";
             
             flash($message)->warning();
