@@ -25,6 +25,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        $resources = \App\Models\Resource::all();
+
+        foreach ($resources as $resource) {
+            Gate::define($resource->resource, function($user) use ($resource){
+                return $resource->roles->contains($user->role);
+            });
+        }
+        
     }
 }
