@@ -12,6 +12,7 @@
           <a href="{{route('threads.show', $thread->slug)}}" class="list-group-item list-group-item-action">
             <h5> {{$thread->title}} </h5>
             <small> Criado por: <b>{{$thread->user->name}}</b> há: {{$thread->created_at->diffForHumans() }}</small>
+            <span class="badge badge-primary"> {{$thread->channel->name}} </span>
           </a>
         </div>
       @empty

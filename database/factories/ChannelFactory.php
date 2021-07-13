@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
 $factory->define(Channel::class, function (Faker $faker) {
-    $name = $faker->sentence;
+    $name = $faker->word;
     return [
         "name"          => $name,
         "description"   => $faker->sentence,
