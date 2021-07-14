@@ -26,18 +26,18 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        // $resources = \App\Models\Resource::all();
+        $resources = \App\Models\Resource::all();
+        
+        foreach ($resources as $resource) {
+            Gate::define($resource->resource, function($user) use ($resource){
+                return $resource->roles->contains($user->role);
+            });
+        }
 
-        // foreach ($resources as $resource) {
-        //     Gate::define($resource->resource, function($user) use ($resource){
-        //         return $resource->roles->contains($user->role);
-        //     });
-        // }
-
-        Gate::define('access-index-forum', function($user){
-            // dd($user);
-            return $user->isAdmin();
-        });
+        // Gate::define('access-index-forum', function($user){
+        //     // dd($user);
+        //     return $user->isAdmin();
+        // });
         
     }
 }

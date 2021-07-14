@@ -23,7 +23,8 @@ class ThreadController extends Controller
      */
     public function index(Request $request, Channel $channel)
     {
-        // $this->authorize('access-index-forum');
+        // $this->authorize('threads/index');
+        
         $channelParam = $request->channel;
         if (null !== $channelParam) {
             $threads = $channel->whereSlug($channelParam)->first()->threads()->paginate(5);

@@ -49,6 +49,7 @@
     @endif
 
     <div class="col-12">
+      @auth
       <form action="{{route('replies.store')}}" method="post">
         @csrf 
         <div class="form-group">
@@ -63,6 +64,11 @@
         </div>
         <button type="submit" class="btn btn-sm btn-success">Responder</button>
       </form>
+      @else
+        <div class="col-12 text-center">
+          <small>É necessário está logado para responder ao tópico</small>
+        </div>
+      @endauth
     </div>
   </div>
 @endsection
