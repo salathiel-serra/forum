@@ -27,6 +27,12 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         $resources = \App\Models\Resource::all();
+
+        Gate::before(function($user){
+            if ($user->isAdmin()) {
+                return true;
+            }
+        });
         
         foreach ($resources as $resource) {
             Gate::define($resource->resource, function($user) use ($resource){
